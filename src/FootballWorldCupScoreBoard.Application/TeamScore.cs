@@ -7,8 +7,6 @@ public record TeamScore
 
     private TeamScore() { }
 
-    public static TeamScore CreateFor(Team team) => new() { Team = team, Score = 0 };
-
     public void Increase()
     {
         checked
@@ -16,4 +14,8 @@ public record TeamScore
             Score++;
         }
     }
+
+    public override string ToString() => $"{Team} {Score}";
+
+    public static TeamScore CreateFor(Team team) => new() { Team = team, Score = 0 };
 }
