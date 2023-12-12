@@ -6,5 +6,9 @@ public record Team
 
     private Team() { }
 
-    public static Team Create(string name) => new() { Name = name };
+    public static Team Create(string name)
+    {
+        ArgumentException.ThrowIfNullOrEmpty(name);
+        return new Team { Name = name };
+    }
 }
