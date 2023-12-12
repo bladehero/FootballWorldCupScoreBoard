@@ -12,7 +12,7 @@
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
       <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
-          <_Parameter1>FootballWorldCupScoreBoard.Application.Tests</_Parameter1>
+          <_Parameter1>FootballWorldCupScoreBoard.Application.UnitTests</_Parameter1>
       </AssemblyAttribute>
     </ItemGroup>
 
