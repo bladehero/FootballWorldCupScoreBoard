@@ -2,7 +2,7 @@
 
 public record Team
 {
-    public string Name { get; init; }
+    public string Name { get; init; } = null!;
 
     private Team() { }
 
