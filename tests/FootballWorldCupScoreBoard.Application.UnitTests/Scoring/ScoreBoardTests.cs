@@ -56,4 +56,21 @@ public class ScoreBoardTests
             .Should()
             .Be("Another match has been already started");
     }
+
+    [Fact]
+    public void IncreaseHomeTeamScore_Always_ShouldIncreaseScoreOfHomeTeam()
+    {
+        // Arrange
+        var matchMock = new Mock<IMatch>();
+        _matchProviderMock
+            .Setup(x => x.Create(HomeTeamName, AwayTeamName))
+            .Returns(matchMock.Object);
+        _sut.StartNew(HomeTeamName, AwayTeamName);
+
+        // Act
+        _sut.IncreaseHomeTeamScore();
+
+        // Assert
+        matchMock.Verify(x => x.HomeTeamScoresGoal(), Times.Once);
+    }
 }

@@ -22,4 +22,9 @@ public class ScoreBoard
         _current = _matchProvider.Create(homeTeamName, awayTeamName);
         return _current;
     }
+
+    public void IncreaseHomeTeamScore()
+    {
+        _current.HomeTeamScoresGoal();
+    }
 }
