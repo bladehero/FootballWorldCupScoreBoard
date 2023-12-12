@@ -73,4 +73,14 @@ public class ScoreBoardTests
         // Assert
         matchMock.Verify(x => x.HomeTeamScoresGoal(), Times.Once);
     }
+
+    [Fact]
+    public void IncreaseHomeTeamScore_WhenNoStartedMatch_ShouldThrowInvalidOperationException()
+    {
+        // Act
+        var action = () => _sut.IncreaseHomeTeamScore();
+
+        // Assert
+        action.Should().ThrowExactly<InvalidOperationException>();
+    }
 }

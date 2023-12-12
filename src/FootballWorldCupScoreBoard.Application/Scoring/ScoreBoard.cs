@@ -25,6 +25,11 @@ public class ScoreBoard
 
     public void IncreaseHomeTeamScore()
     {
+        if (_current is null)
+        {
+            throw new InvalidOperationException("Cannot increase score when match is not started");
+        }
+
         _current.HomeTeamScoresGoal();
     }
 }
