@@ -6,7 +6,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3D898D84-242
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{011FA635-A000-4661-87C3-457129E2C2D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballWorldCupScoreBoard.Application.Tests", "tests\FootballWorldCupScoreBoard.Application.Tests\FootballWorldCupScoreBoard.Application.Tests.csproj", "{D1B4B383-8C70-406D-AD90-F4E275396DD1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballWorldCupScoreBoard.Application.UnitTests", "tests\FootballWorldCupScoreBoard.Application.UnitTests\FootballWorldCupScoreBoard.Application.UnitTests.csproj", "{D1B4B383-8C70-406D-AD90-F4E275396DD1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballWorldCupScoreBoard.Persistence", "src\FootballWorldCupScoreBoard.Persistence\FootballWorldCupScoreBoard.Persistence.csproj", "{FABECD43-88E1-4192-B26E-F8F9CD9D3596}"
 EndProject
