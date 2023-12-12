@@ -22,4 +22,17 @@ public class TeamScoreTests
             .And
             .BeEquivalentTo(new { Team = new { Name = AnyName }, Score = 0 });
     }
+
+    [Fact]
+    public void Increment_WhenInvokedOneTime_ShouldSetScoreToOne()
+    {
+        // Arrange
+        var sut = TeamScore.CreateFor(AnyTeam);
+
+        // Act
+        sut.Increase();
+
+        // Assert
+        sut.Score.Should().Be(1);
+    }
 }
