@@ -17,22 +17,6 @@ public class MatchTests
     }
 
     [Fact]
-    public void Create_Always_ShouldReturnMatchWithTwoProvidedTeams()
-    {
-        // Act
-        var actual = Match.Create(HomeTeam, AwayTeam);
-
-        // Assert
-        actual
-            .Should()
-            .NotBeNull()
-            .And
-            .BeOfType<Match>()
-            .And
-            .BeEquivalentTo(new { HomeTeam, AwayTeam });
-    }
-
-    [Fact]
     public void HomeTeamScoresGoal_Always_ShouldIncreaseHomeTeamScore()
     {
         // Act

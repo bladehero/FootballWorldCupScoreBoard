@@ -1,0 +1,6 @@
+﻿namespace FootballWorldCupScoreBoard.Application;
+
+public class MatchProvider
+{
+    public IMatch Create(Team homeTeam, Team awayTeam) => Match.Create(homeTeam, awayTeam);
+}
