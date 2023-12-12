@@ -4,8 +4,10 @@ namespace FootballWorldCupScoreBoard.Application.Tests;
 
 public class MatchTests
 {
-    private static readonly Team HomeTeam = Team.Create("Spain");
-    private static readonly Team AwayTeam = Team.Create("Italy");
+    private const string HomeTeamName = "Spain";
+    private const string AwayTeamName = "Italy";
+    private static readonly Team HomeTeam = Team.Create(HomeTeamName);
+    private static readonly Team AwayTeam = Team.Create(AwayTeamName);
 
     private readonly Match _sut;
 
@@ -48,5 +50,20 @@ public class MatchTests
 
         // Assert
         _sut.AwayTeamScore.Should().Be(1);
+    }
+
+    [Fact]
+    public void ToString_Always_ReturnFormattedScoreForMatch()
+    {
+        // Arrange
+        _sut.HomeTeamScoresGoal();
+        _sut.AwayTeamScoresGoal();
+        _sut.HomeTeamScoresGoal();
+
+        // Act
+        var actual = _sut.ToString();
+
+        // Assert
+        actual.Should().Be($"{HomeTeamName} 2 - {AwayTeamName} 1");
     }
 }

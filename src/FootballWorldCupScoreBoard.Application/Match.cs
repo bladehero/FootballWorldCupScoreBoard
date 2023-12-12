@@ -17,6 +17,8 @@ public class Match
 
     public void AwayTeamScoresGoal() => _awayTeamScore.Increase();
 
+    public override string ToString() => $"{_homeTeamScore} - {_awayTeamScore}";
+
     public static Match Create(Team homeTeam, Team awayTeam) =>
         new()
         {
