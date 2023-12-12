@@ -32,4 +32,14 @@ public class ScoreBoard
 
         _current.HomeTeamScoresGoal();
     }
+
+    public void IncreaseAwayTeamScore()
+    {
+        if (_current is null)
+        {
+            throw new InvalidOperationException("Cannot increase score when match is not started");
+        }
+
+        _current.AwayTeamScoresGoal();
+    }
 }

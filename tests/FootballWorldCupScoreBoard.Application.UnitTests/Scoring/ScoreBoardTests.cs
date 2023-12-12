@@ -83,4 +83,31 @@ public class ScoreBoardTests
         // Assert
         action.Should().ThrowExactly<InvalidOperationException>();
     }
+
+    [Fact]
+    public void IncreaseAwayTeamScore_Always_ShouldIncreaseScoreOfHomeTeam()
+    {
+        // Arrange
+        var matchMock = new Mock<IMatch>();
+        _matchProviderMock
+            .Setup(x => x.Create(HomeTeamName, AwayTeamName))
+            .Returns(matchMock.Object);
+        _sut.StartNew(HomeTeamName, AwayTeamName);
+
+        // Act
+        _sut.IncreaseAwayTeamScore();
+
+        // Assert
+        matchMock.Verify(x => x.AwayTeamScoresGoal(), Times.Once);
+    }
+
+    [Fact]
+    public void IncreaseAwayTeamScore_WhenNoStartedMatch_ShouldThrowInvalidOperationException()
+    {
+        // Act
+        var action = () => _sut.IncreaseAwayTeamScore();
+
+        // Assert
+        action.Should().ThrowExactly<InvalidOperationException>();
+    }
 }
