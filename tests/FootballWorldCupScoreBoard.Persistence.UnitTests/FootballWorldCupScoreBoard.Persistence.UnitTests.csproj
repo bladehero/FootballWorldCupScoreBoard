@@ -28,7 +28,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\FootballWorldCupScoreBoard.Application\FootballWorldCupScoreBoard.Persistence.csproj" />
+        <ProjectReference Include="..\..\src\FootballWorldCupScoreBoard.Persistence\FootballWorldCupScoreBoard.Persistence.csproj" />
     </ItemGroup>
 
 </Project>
