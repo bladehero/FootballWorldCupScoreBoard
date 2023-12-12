@@ -24,7 +24,7 @@ public class TeamScoreTests
     }
 
     [Fact]
-    public void Increment_WhenInvokedOneTime_ShouldSetScoreToOne()
+    public void Increase_WhenInvokedOneTime_ShouldSetScoreToOne()
     {
         // Arrange
         var sut = TeamScore.CreateFor(AnyTeam);
@@ -40,9 +40,7 @@ public class TeamScoreTests
     [InlineData(2)]
     [InlineData(5)]
     [InlineData(255)]
-    public void Increment_WhenInvokedMoreThanOnce_ShouldSetScoreToAmountOfInvocationTimes(
-        byte times
-    )
+    public void Increase_WhenInvokedMoreThanOnce_ShouldSetScoreToAmountOfInvocationTimes(byte times)
     {
         // Arrange
         var sut = TeamScore.CreateFor(AnyTeam);
