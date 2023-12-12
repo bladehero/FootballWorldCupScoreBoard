@@ -3,7 +3,7 @@ using FootballWorldCupScoreBoard.Application.Scoring;
 
 namespace FootballWorldCupScoreBoard.Persistence.Games;
 
-public class GameRepository : ISummaryRecorder
+public class GameRepository : ISummaryRecorder, IGameRepository
 {
     private readonly DatabaseContext _context;
     private readonly IGuidProvider _guidProvider;
@@ -12,6 +12,11 @@ public class GameRepository : ISummaryRecorder
     {
         _context = context;
         _guidProvider = guidProvider;
+    }
+
+    public IEnumerable<GameModel> GetAllGames()
+    {
+        return Enumerable.Empty<GameModel>();
     }
 
     public void SaveMatch(IMatch match) =>

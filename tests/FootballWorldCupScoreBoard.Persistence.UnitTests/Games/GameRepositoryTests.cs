@@ -52,6 +52,16 @@ public class GameRepositoryTests
         }
     }
 
+    [Fact]
+    public void GetAllGames_WhenNoGamesAdded_ShouldReturnEmptyCollection()
+    {
+        // Act
+        var actual = _sut.GetAllGames();
+
+        // Assert
+        actual.Should().BeEmpty();
+    }
+
     private class MatchStub : IMatch
     {
         public MatchStub(
