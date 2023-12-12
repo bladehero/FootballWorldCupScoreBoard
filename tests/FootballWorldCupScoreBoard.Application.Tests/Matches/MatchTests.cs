@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
+using FootballWorldCupScoreBoard.Application.Matches;
 
-namespace FootballWorldCupScoreBoard.Application.Tests;
+namespace FootballWorldCupScoreBoard.Application.Tests.Matches;
 
 public class MatchTests
 {
@@ -9,27 +10,11 @@ public class MatchTests
     private static readonly Team HomeTeam = Team.Create(HomeTeamName);
     private static readonly Team AwayTeam = Team.Create(AwayTeamName);
 
-    private readonly Match _sut;
+    private readonly IMatch _sut;
 
     public MatchTests()
     {
         _sut = Match.Create(HomeTeam, AwayTeam);
-    }
-
-    [Fact]
-    public void Create_Always_ShouldReturnMatchWithTwoProvidedTeams()
-    {
-        // Act
-        var actual = Match.Create(HomeTeam, AwayTeam);
-
-        // Assert
-        actual
-            .Should()
-            .NotBeNull()
-            .And
-            .BeOfType<Match>()
-            .And
-            .BeEquivalentTo(new { HomeTeam, AwayTeam });
     }
 
     [Fact]
