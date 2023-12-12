@@ -5,5 +5,5 @@ namespace FootballWorldCupScoreBoard.Persistence;
 public static class DependencyInjectionExtensions
 {
     public static IServiceCollection AddPersistence(this IServiceCollection services) =>
-        services.AddSingleton<DatabaseContext>();
+        services.AddSingleton<DatabaseContext>().AddTransient<IGuidProvider, GuidProvider>();
 }

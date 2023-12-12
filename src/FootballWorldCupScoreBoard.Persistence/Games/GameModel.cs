@@ -7,7 +7,7 @@ public class GameModel
 {
     public Guid Guid { get; set; }
     public string HomeTeamName { get; set; } = null!;
-    public string HomeTeamScore { get; set; } = null!;
+    public byte HomeTeamScore { get; set; }
     public string AwayTeamName { get; set; } = null!;
-    public string AwayTeamScore { get; set; } = null!;
+    public byte AwayTeamScore { get; set; }
 }
