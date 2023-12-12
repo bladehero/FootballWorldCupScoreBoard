@@ -11,6 +11,9 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+      <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+          <_Parameter1>FootballWorldCupScoreBoard.Application.Tests</_Parameter1>
+      </AssemblyAttribute>
     </ItemGroup>
 
     <!-- set HUSKY to 0 in CI/CD disable this -->
