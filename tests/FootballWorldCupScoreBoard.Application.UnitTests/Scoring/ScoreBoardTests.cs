@@ -19,7 +19,7 @@ public class ScoreBoardTests
     }
 
     [Fact]
-    public void Start_Always_ProduceNewMatch()
+    public void Start_WhenNotAlreadyStartedOne_ProduceNewMatch()
     {
         // Arrange
         var expected = new Mock<IMatch>().Object;
@@ -34,5 +34,26 @@ public class ScoreBoardTests
             actual.Should().Be(expected);
             _matchProviderMock.VerifyAll();
         }
+    }
+
+    [Fact]
+    public void Start_WhenAlreadyStarted_ShouldThrowInvalidOperation()
+    {
+        // Arrange
+        var expected = new Mock<IMatch>().Object;
+        _matchProviderMock.Setup(x => x.Create(HomeTeamName, AwayTeamName)).Returns(expected);
+        _sut.StartNew(HomeTeamName, AwayTeamName);
+
+        // Act
+        var action = () => _sut.StartNew("AnyOtherHomeTeam", "AnyOtherAwayTeam");
+
+        // Assert
+        action
+            .Should()
+            .ThrowExactly<InvalidOperationException>()
+            .And
+            .Message
+            .Should()
+            .Be("Another match has been already started");
     }
 }
