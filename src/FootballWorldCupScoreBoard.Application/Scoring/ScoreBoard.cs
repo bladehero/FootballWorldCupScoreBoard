@@ -5,11 +5,13 @@ namespace FootballWorldCupScoreBoard.Application.Scoring;
 public class ScoreBoard
 {
     private readonly IMatchProvider _matchProvider;
+    private readonly ISummaryRecorder _summaryRecorder;
     private IMatch? _current;
 
-    public ScoreBoard(IMatchProvider matchProvider)
+    public ScoreBoard(IMatchProvider matchProvider, ISummaryRecorder summaryRecorder)
     {
         _matchProvider = matchProvider;
+        _summaryRecorder = summaryRecorder;
     }
 
     public IMatch StartNew(string homeTeamName, string awayTeamName)
@@ -50,6 +52,7 @@ public class ScoreBoard
             throw new InvalidOperationException("Cannot finish match when it is not started");
         }
 
+        _summaryRecorder.SaveMatch(_current);
         _current = null;
     }
 }

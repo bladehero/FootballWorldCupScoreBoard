@@ -11,11 +11,12 @@ public class ScoreBoardTests
     private const string HomeTeamName = "Spain";
     private const string AwayTeamName = "Italy";
     private readonly Mock<IMatchProvider> _matchProviderMock = new();
+    private readonly Mock<ISummaryRecorder> _summaryRecorderMock = new();
     private readonly ScoreBoard _sut;
 
     public ScoreBoardTests()
     {
-        _sut = new ScoreBoard(_matchProviderMock.Object);
+        _sut = new ScoreBoard(_matchProviderMock.Object, _summaryRecorderMock.Object);
     }
 
     [Fact]
@@ -124,7 +125,7 @@ public class ScoreBoardTests
     }
 
     [Fact]
-    public void Finish_WhenGameWasStarted_ShouldClearItAndAllowToStartNew()
+    public void Finish_WhenGameWasStarted_ShouldSendMatchAsEventAndAllowToStartNew()
     {
         // Arrange
         var expected = new Mock<IMatch>().Object;
@@ -136,6 +137,10 @@ public class ScoreBoardTests
         var action = () => _sut.StartNew("SomeOtherHomeTeam", "AndAnotherAwayTeam");
 
         // Assert
-        action.Should().NotThrow();
+        using (new AssertionScope())
+        {
+            _summaryRecorderMock.Verify(x => x.SaveMatch(expected));
+            action.Should().NotThrow();
+        }
     }
 }
