@@ -8,11 +8,15 @@ public class TeamScoreTests
     private const string AnyName = "Italy";
     private static readonly Team AnyTeam = Team.Create(AnyName);
 
+    private readonly TeamScore _sut;
+
+    public TeamScoreTests() => _sut = TeamScore.CreateFor(AnyTeam);
+
     [Fact]
     public void CreateFor_Always_ShouldReturnTeamScore()
     {
         // Act
-        var actual = CreateSut();
+        var actual = TeamScore.CreateFor(AnyTeam);
 
         // Assert
         actual
@@ -27,14 +31,11 @@ public class TeamScoreTests
     [Fact]
     public void Increase_WhenInvokedOneTime_ShouldSetScoreToOne()
     {
-        // Arrange
-        var sut = CreateSut();
-
         // Act
-        sut.Increase();
+        _sut.Increase();
 
         // Assert
-        sut.Score.Should().Be(1);
+        _sut.Score.Should().Be(1);
     }
 
     [Theory]
@@ -43,30 +44,22 @@ public class TeamScoreTests
     [InlineData(255)]
     public void Increase_WhenInvokedMoreThanOnce_ShouldSetScoreToAmountOfInvocationTimes(byte times)
     {
-        // Arrange
-        var sut = CreateSut();
-
         // Act
-        RepeatIncreaseFor(sut, times);
+        RepeatIncreaseFor(_sut, times);
 
         // Assert
-        sut.Score.Should().Be(times);
+        _sut.Score.Should().Be(times);
     }
 
     [Fact]
     public void Increase_WhenScoreMoreThan255_ShouldThrowOverflowException()
     {
-        // Arrange
-        var sut = CreateSut();
-
         // Act
-        var action = () => RepeatIncreaseFor(sut, MoreThanByteCanStore);
+        var action = () => RepeatIncreaseFor(_sut, MoreThanByteCanStore);
 
         // Assert
         action.Should().ThrowExactly<OverflowException>();
     }
-
-    private static TeamScore CreateSut() => TeamScore.CreateFor(AnyTeam);
 
     private static void RepeatIncreaseFor(TeamScore teamScore, int times)
     {
