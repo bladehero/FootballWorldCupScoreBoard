@@ -9,10 +9,13 @@ public class Match
     public byte HomeTeamScore => _homeTeamScore.Score;
 
     public Team AwayTeam => _awayTeamScore.Team;
+    public byte AwayTeamScore => _awayTeamScore.Score;
 
     private Match() { }
 
     public void HomeTeamScoresGoal() => _homeTeamScore.Increase();
+
+    public void AwayTeamScoresGoal() => _awayTeamScore.Increase();
 
     public static Match Create(Team homeTeam, Team awayTeam) =>
         new()

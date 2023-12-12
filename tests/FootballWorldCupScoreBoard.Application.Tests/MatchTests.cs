@@ -39,4 +39,14 @@ public class MatchTests
         // Assert
         _sut.HomeTeamScore.Should().Be(1);
     }
+
+    [Fact]
+    public void AwayTeamScoresGoal_Always_ShouldIncreaseAwayTeamScore()
+    {
+        // Act
+        _sut.AwayTeamScoresGoal();
+
+        // Assert
+        _sut.AwayTeamScore.Should().Be(1);
+    }
 }
