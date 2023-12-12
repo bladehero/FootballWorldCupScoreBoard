@@ -21,11 +21,13 @@ public class TeamTests
         }
     }
 
-    [Fact]
-    public void Create_WhenNameIsNullOrEmpty_ShouldThrowArgumentException()
+    [Theory]
+    [InlineData("")]
+    [InlineData(null)]
+    public void Create_WhenNameIsNullOrEmpty_ShouldThrowArgumentException(string? name)
     {
         // Act
-        var action = () => Team.Create(null!);
+        var action = () => Team.Create(name!);
 
         // Assert
         action.Should().Throw<ArgumentException>().Which.ParamName.Should().Be("name");
