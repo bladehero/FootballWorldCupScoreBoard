@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballWorldCupScoreBoard.Application", "src\FootballWorldCupScoreBoard.Application\FootballWorldCupScoreBoard.Application.csproj", "{C92B04CA-0B42-4F46-95CD-BC5081169856}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3D898D84-242B-46B7-A7E1-F1C044302FB3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{011FA635-A000-4661-87C3-457129E2C2D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballWorldCupScoreBoard.Application.Tests", "tests\FootballWorldCupScoreBoard.Application.Tests\FootballWorldCupScoreBoard.Application.Tests.csproj", "{D1B4B383-8C70-406D-AD90-F4E275396DD1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C92B04CA-0B42-4F46-95CD-BC5081169856}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C92B04CA-0B42-4F46-95CD-BC5081169856}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C92B04CA-0B42-4F46-95CD-BC5081169856}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C92B04CA-0B42-4F46-95CD-BC5081169856}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1B4B383-8C70-406D-AD90-F4E275396DD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1B4B383-8C70-406D-AD90-F4E275396DD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1B4B383-8C70-406D-AD90-F4E275396DD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1B4B383-8C70-406D-AD90-F4E275396DD1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C92B04CA-0B42-4F46-95CD-BC5081169856} = {3D898D84-242B-46B7-A7E1-F1C044302FB3}
+		{D1B4B383-8C70-406D-AD90-F4E275396DD1} = {011FA635-A000-4661-87C3-457129E2C2D3}
+	EndGlobalSection
+EndGlobal
