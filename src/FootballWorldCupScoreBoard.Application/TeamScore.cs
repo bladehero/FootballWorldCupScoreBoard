@@ -16,4 +16,6 @@ public record TeamScore
             Score++;
         }
     }
+
+    public override string ToString() => $"{Team} {Score}";
 }

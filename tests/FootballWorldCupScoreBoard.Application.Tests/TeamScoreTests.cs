@@ -52,6 +52,18 @@ public class TeamScoreTests
         action.Should().ThrowExactly<OverflowException>();
     }
 
+    [Theory]
+    [InlineData(1)]
+    [InlineData(3)]
+    public void ToString_Always_ShouldReturnTeamNameAndScore(int times)
+    {
+        // Arrange
+        RepeatIncreaseFor(_sut, times);
+
+        // Act & Assert
+        _sut.ToString().Should().Be($"{AnyName} {times}");
+    }
+
     private static void RepeatIncreaseFor(TeamScore teamScore, int times)
     {
         for (var _ = 0; _ < times; _++)
