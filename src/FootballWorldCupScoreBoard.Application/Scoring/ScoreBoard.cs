@@ -45,6 +45,11 @@ public class ScoreBoard
 
     public void Finish()
     {
-        throw new InvalidOperationException("Cannot finish match when it is not started");
+        if (_current is null)
+        {
+            throw new InvalidOperationException("Cannot finish match when it is not started");
+        }
+
+        _current = null;
     }
 }

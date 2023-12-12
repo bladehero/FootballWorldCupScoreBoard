@@ -122,4 +122,20 @@ public class ScoreBoardTests
             .Should()
             .ThrowExactly<InvalidOperationException>("Cannot finish match when it is not started");
     }
+
+    [Fact]
+    public void Finish_WhenGameWasStarted_ShouldClearItAndAllowToStartNew()
+    {
+        // Arrange
+        var expected = new Mock<IMatch>().Object;
+        _matchProviderMock.Setup(x => x.Create(HomeTeamName, AwayTeamName)).Returns(expected);
+        _sut.StartNew(HomeTeamName, AwayTeamName);
+
+        // Act
+        _sut.Finish();
+        var action = () => _sut.StartNew("SomeOtherHomeTeam", "AndAnotherAwayTeam");
+
+        // Assert
+        action.Should().NotThrow();
+    }
 }
