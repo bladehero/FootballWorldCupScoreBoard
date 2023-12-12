@@ -9,6 +9,9 @@ namespace FootballWorldCupScoreBoard.Persistence.UnitTests.Games;
 
 public class GameRepositoryTests
 {
+    private static readonly Guid SomeRandomGuid = Guid.Parse(
+        "dce522fb-8977-4a36-a296-4aa65751b308"
+    );
     private readonly DatabaseContext _context = new();
     private readonly Mock<IGuidProvider> _guidProviderMock = new();
     private readonly GameRepository _sut;
@@ -23,6 +26,7 @@ public class GameRepositoryTests
     {
         // Arrange
         var match = new MatchStub("England", 3, "Germany", 2);
+        _guidProviderMock.Setup(x => x.NewGuid()).Returns(SomeRandomGuid);
 
         // Act
         _sut.SaveMatch(match);
@@ -38,7 +42,7 @@ public class GameRepositoryTests
                 .BeEquivalentTo(
                     new
                     {
-                        Guid = Guid.Empty,
+                        Guid = SomeRandomGuid,
                         HomeTeamName = "England",
                         HomeTeamScore = 3,
                         AwayTeamName = "Germany",

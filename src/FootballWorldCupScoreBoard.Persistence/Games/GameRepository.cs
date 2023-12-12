@@ -20,6 +20,7 @@ public class GameRepository : ISummaryRecorder
             .Add(
                 new GameModel
                 {
+                    Guid = _guidProvider.NewGuid(),
                     HomeTeamName = match.HomeTeam.Name,
                     HomeTeamScore = match.HomeTeamScore,
                     AwayTeamName = match.AwayTeam.Name,
