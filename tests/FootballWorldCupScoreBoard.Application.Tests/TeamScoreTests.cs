@@ -35,4 +35,25 @@ public class TeamScoreTests
         // Assert
         sut.Score.Should().Be(1);
     }
+
+    [Theory]
+    [InlineData(2)]
+    [InlineData(5)]
+    [InlineData(255)]
+    public void Increment_WhenInvokedMoreThanOnce_ShouldSetScoreToAmountOfInvocationTimes(
+        byte times
+    )
+    {
+        // Arrange
+        var sut = TeamScore.CreateFor(AnyTeam);
+
+        // Act
+        for (var _ = 0; _ < times; _++)
+        {
+            sut.Increase();
+        }
+
+        // Assert
+        sut.Score.Should().Be(times);
+    }
 }

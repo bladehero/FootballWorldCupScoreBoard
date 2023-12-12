@@ -11,6 +11,6 @@ public record TeamScore
 
     public void Increase()
     {
-        Score = 1;
+        Score++;
     }
 }
