@@ -6,5 +6,5 @@ public record Team
 
     private Team() { }
 
-    public static Team Create() => new();
+    public static Team Create(string name) => new() { Name = name };
 }
