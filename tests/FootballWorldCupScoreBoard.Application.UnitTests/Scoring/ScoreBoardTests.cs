@@ -110,4 +110,16 @@ public class ScoreBoardTests
         // Assert
         action.Should().ThrowExactly<InvalidOperationException>();
     }
+
+    [Fact]
+    public void Finish_WhenNoStartedGame_ShouldThrowInvalidOperation()
+    {
+        // Act
+        var action = () => _sut.Finish();
+
+        // Assert
+        action
+            .Should()
+            .ThrowExactly<InvalidOperationException>("Cannot finish match when it is not started");
+    }
 }

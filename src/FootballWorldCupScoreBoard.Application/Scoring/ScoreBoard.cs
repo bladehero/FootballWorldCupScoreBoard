@@ -42,4 +42,9 @@ public class ScoreBoard
 
         _current.AwayTeamScoresGoal();
     }
+
+    public void Finish()
+    {
+        throw new InvalidOperationException("Cannot finish match when it is not started");
+    }
 }
