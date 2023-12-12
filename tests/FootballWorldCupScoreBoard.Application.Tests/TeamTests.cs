@@ -32,4 +32,17 @@ public class TeamTests
         // Assert
         action.Should().Throw<ArgumentException>().Which.ParamName.Should().Be("name");
     }
+
+    [Fact]
+    public void ToString_Always_ShouldReturnTeamName()
+    {
+        // Arrange
+        var sut = Team.Create(AnyName);
+
+        // Act
+        var actual = sut.ToString();
+
+        // Assert
+        actual.Should().Be(AnyName);
+    }
 }

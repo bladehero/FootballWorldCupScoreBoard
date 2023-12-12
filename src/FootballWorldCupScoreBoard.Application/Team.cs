@@ -11,4 +11,6 @@ public record Team
         ArgumentException.ThrowIfNullOrEmpty(name);
         return new Team { Name = name };
     }
+
+    public override string ToString() => Name;
 }
