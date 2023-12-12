@@ -9,7 +9,7 @@ public class MatchTests
     private static readonly Team HomeTeam = Team.Create(HomeTeamName);
     private static readonly Team AwayTeam = Team.Create(AwayTeamName);
 
-    private readonly Match _sut;
+    private readonly IMatch _sut;
 
     public MatchTests()
     {

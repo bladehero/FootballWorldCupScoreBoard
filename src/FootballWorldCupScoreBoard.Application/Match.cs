@@ -1,6 +1,6 @@
 ﻿namespace FootballWorldCupScoreBoard.Application;
 
-public class Match
+public class Match : IMatch
 {
     private TeamScore _homeTeamScore = null!;
     private TeamScore _awayTeamScore = null!;
@@ -19,8 +19,8 @@ public class Match
 
     public override string ToString() => $"{_homeTeamScore} - {_awayTeamScore}";
 
-    public static Match Create(Team homeTeam, Team awayTeam) =>
-        new()
+    public static IMatch Create(Team homeTeam, Team awayTeam) =>
+        new Match
         {
             _homeTeamScore = TeamScore.CreateFor(homeTeam),
             _awayTeamScore = TeamScore.CreateFor(awayTeam)
