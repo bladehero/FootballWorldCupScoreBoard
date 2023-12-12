@@ -28,17 +28,8 @@ public class TeamScoreTests
             .BeEquivalentTo(new { Team = new { Name = AnyName }, Score = 0 });
     }
 
-    [Fact]
-    public void Increase_WhenInvokedOneTime_ShouldSetScoreToOne()
-    {
-        // Act
-        _sut.Increase();
-
-        // Assert
-        _sut.Score.Should().Be(1);
-    }
-
     [Theory]
+    [InlineData(1)]
     [InlineData(2)]
     [InlineData(5)]
     [InlineData(255)]
