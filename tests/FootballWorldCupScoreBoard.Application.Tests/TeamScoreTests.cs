@@ -4,6 +4,7 @@ namespace FootballWorldCupScoreBoard.Application.Tests;
 
 public class TeamScoreTests
 {
+    private const int MoreThanByteCanStore = byte.MaxValue + 1;
     private const string AnyName = "Italy";
     private static readonly Team AnyTeam = Team.Create(AnyName);
 
@@ -53,5 +54,24 @@ public class TeamScoreTests
 
         // Assert
         sut.Score.Should().Be(times);
+    }
+
+    [Fact]
+    public void Increase_WhenScoreMoreThan255_ShouldThrowOverflowException()
+    {
+        // Arrange
+        var sut = TeamScore.CreateFor(AnyTeam);
+
+        // Act
+        var action = () =>
+        {
+            for (var _ = 0; _ < MoreThanByteCanStore; _++)
+            {
+                sut.Increase();
+            }
+        };
+
+        // Assert
+        action.Should().ThrowExactly<OverflowException>();
     }
 }
