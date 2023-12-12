@@ -2,5 +2,5 @@
 
 public interface IMatchProvider
 {
-    IMatch Create(Team homeTeam, Team awayTeam);
+    IMatch Create(string homeTeamName, string awayTeamName);
 }

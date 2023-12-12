@@ -21,7 +21,7 @@ public class MatchProviderTests
     public void Create_Always_ShouldReturnMatchWithTwoProvidedTeams()
     {
         // Act
-        var actual = _sut.Create(HomeTeam, AwayTeam);
+        var actual = _sut.Create(HomeTeamName, AwayTeamName);
 
         // Assert
         actual
