@@ -19,7 +19,7 @@ public class ScoreBoardTests
     }
 
     [Fact]
-    public void Start_WhenNotAlreadyStartedOne_ProduceNewMatch()
+    public void StartNew_WhenNotAlreadyStartedOne_ProduceNewMatch()
     {
         // Arrange
         var expected = new Mock<IMatch>().Object;
@@ -37,7 +37,7 @@ public class ScoreBoardTests
     }
 
     [Fact]
-    public void Start_WhenAlreadyStarted_ShouldThrowInvalidOperation()
+    public void StartNew_WhenAlreadyStarted_ShouldThrowInvalidOperation()
     {
         // Arrange
         var expected = new Mock<IMatch>().Object;
