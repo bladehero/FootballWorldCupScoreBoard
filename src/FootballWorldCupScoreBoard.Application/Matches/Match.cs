@@ -1,4 +1,4 @@
-﻿namespace FootballWorldCupScoreBoard.Application;
+﻿namespace FootballWorldCupScoreBoard.Application.Matches;
 
 internal sealed class Match : IMatch
 {

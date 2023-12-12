@@ -1,4 +1,4 @@
-﻿namespace FootballWorldCupScoreBoard.Application;
+﻿namespace FootballWorldCupScoreBoard.Application.Matches;
 
 public class MatchProvider : IMatchProvider
 {

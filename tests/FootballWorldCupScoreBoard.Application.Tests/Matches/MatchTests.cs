@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
+using FootballWorldCupScoreBoard.Application.Matches;
 
-namespace FootballWorldCupScoreBoard.Application.Tests;
+namespace FootballWorldCupScoreBoard.Application.Tests.Matches;
 
 public class MatchTests
 {
