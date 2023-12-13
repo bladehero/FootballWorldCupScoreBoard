@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballWorldCupScoreBoard.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballWorldCupScoreBoard.Persistence.UnitTests", "tests\FootballWorldCupScoreBoard.Persistence.UnitTests\FootballWorldCupScoreBoard.Persistence.UnitTests.csproj", "{2A066F10-F09A-46CF-BFA2-A7B6E30DECB1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballWorldCupScoreBoard.Client", "src\FootballWorldCupScoreBoard.Client\FootballWorldCupScoreBoard.Client.csproj", "{E1F19735-94FD-4F4B-8E7E-E5C7CC26F8B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,11 +36,16 @@ Global
 		{2A066F10-F09A-46CF-BFA2-A7B6E30DECB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A066F10-F09A-46CF-BFA2-A7B6E30DECB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A066F10-F09A-46CF-BFA2-A7B6E30DECB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1F19735-94FD-4F4B-8E7E-E5C7CC26F8B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1F19735-94FD-4F4B-8E7E-E5C7CC26F8B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1F19735-94FD-4F4B-8E7E-E5C7CC26F8B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1F19735-94FD-4F4B-8E7E-E5C7CC26F8B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C92B04CA-0B42-4F46-95CD-BC5081169856} = {3D898D84-242B-46B7-A7E1-F1C044302FB3}
 		{D1B4B383-8C70-406D-AD90-F4E275396DD1} = {011FA635-A000-4661-87C3-457129E2C2D3}
 		{FABECD43-88E1-4192-B26E-F8F9CD9D3596} = {3D898D84-242B-46B7-A7E1-F1C044302FB3}
 		{2A066F10-F09A-46CF-BFA2-A7B6E30DECB1} = {011FA635-A000-4661-87C3-457129E2C2D3}
+		{E1F19735-94FD-4F4B-8E7E-E5C7CC26F8B3} = {3D898D84-242B-46B7-A7E1-F1C044302FB3}
 	EndGlobalSection
 EndGlobal
