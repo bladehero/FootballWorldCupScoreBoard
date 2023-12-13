@@ -15,7 +15,17 @@ public class GameRepository : ISummaryRecorder, IGameRepository
         _guidProvider = guidProvider;
     }
 
-    public IEnumerable<IMatchScore> GetAllGames() => Enumerable.Empty<MatchScore>();
+    public IEnumerable<IMatchScore> GetAllGames()
+    {
+        return _context.Games.Select(AsMatchScore);
+
+        IMatchScore AsMatchScore(GameModel model)
+        {
+            var homeTeam = Team.Create(model.HomeTeamName);
+            var awayTeam = Team.Create(model.AwayTeamName);
+            return new MatchScore(homeTeam, model.HomeTeamScore, awayTeam, model.AwayTeamScore);
+        }
+    }
 
     public void SaveMatch(IMatch match) =>
         _context
