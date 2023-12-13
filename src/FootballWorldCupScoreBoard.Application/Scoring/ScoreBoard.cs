@@ -2,7 +2,7 @@
 
 namespace FootballWorldCupScoreBoard.Application.Scoring;
 
-public class ScoreBoard
+public class ScoreBoard : IScoreBoard
 {
     private readonly IMatchProvider _matchProvider;
     private readonly ISummaryRecorder _summaryRecorder;
