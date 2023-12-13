@@ -12,11 +12,16 @@ public class ScoreBoardTests
     private const string AwayTeamName = "Italy";
     private readonly Mock<IMatchProvider> _matchProviderMock = new();
     private readonly Mock<ISummaryRecorder> _summaryRecorderMock = new();
+    private readonly Mock<ISummaryProvider> _summaryProviderMock = new();
     private readonly ScoreBoard _sut;
 
     public ScoreBoardTests()
     {
-        _sut = new ScoreBoard(_matchProviderMock.Object, _summaryRecorderMock.Object);
+        _sut = new ScoreBoard(
+            _matchProviderMock.Object,
+            _summaryRecorderMock.Object,
+            _summaryProviderMock.Object
+        );
     }
 
     [Fact]
@@ -142,5 +147,15 @@ public class ScoreBoardTests
             _summaryRecorderMock.Verify(x => x.SaveMatch(expected));
             action.Should().NotThrow();
         }
+    }
+
+    [Fact]
+    public void ShowRecent_Always_ReturnsEmptyCollection()
+    {
+        // Act
+        var actual = _sut.ShowRecent();
+
+        // Assert
+        actual.Should().BeEmpty();
     }
 }
