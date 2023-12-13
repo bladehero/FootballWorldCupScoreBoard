@@ -14,6 +14,7 @@
       <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
           <_Parameter1>FootballWorldCupScoreBoard.Application.UnitTests</_Parameter1>
       </AssemblyAttribute>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
     </ItemGroup>
 
     <!-- set HUSKY to 0 in CI/CD disable this -->
