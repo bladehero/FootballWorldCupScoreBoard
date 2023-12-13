@@ -3,6 +3,7 @@ using FluentAssertions.Execution;
 using FootballWorldCupScoreBoard.Application.Matches;
 using FootballWorldCupScoreBoard.Application.Scoring;
 using Moq;
+using Match = FootballWorldCupScoreBoard.Application.Matches.Match;
 
 namespace FootballWorldCupScoreBoard.Application.UnitTests.Scoring;
 
@@ -12,11 +13,16 @@ public class ScoreBoardTests
     private const string AwayTeamName = "Italy";
     private readonly Mock<IMatchProvider> _matchProviderMock = new();
     private readonly Mock<ISummaryRecorder> _summaryRecorderMock = new();
+    private readonly Mock<ISummaryProvider> _summaryProviderMock = new();
     private readonly ScoreBoard _sut;
 
     public ScoreBoardTests()
     {
-        _sut = new ScoreBoard(_matchProviderMock.Object, _summaryRecorderMock.Object);
+        _sut = new ScoreBoard(
+            _matchProviderMock.Object,
+            _summaryRecorderMock.Object,
+            _summaryProviderMock.Object
+        );
     }
 
     [Fact]
@@ -141,6 +147,44 @@ public class ScoreBoardTests
         {
             _summaryRecorderMock.Verify(x => x.SaveMatch(expected));
             action.Should().NotThrow();
+        }
+    }
+
+    [Fact]
+    public void ShowRecent_Always_ReturnsAllGames()
+    {
+        // Arrange
+        var first = MatchScoreStub.From("Spain", 1, "Italy", 2);
+        var second = MatchScoreStub.From("Poland", 1, "England", 1);
+        _summaryProviderMock.Setup(x => x.GetAllGames()).Returns(new[] { first, second });
+
+        // Act
+        var actual = _sut.ShowRecent();
+
+        // Assert
+        actual.Should().ContainInOrder(second, first);
+    }
+
+    private record MatchScoreStub(
+        Team HomeTeam,
+        byte HomeTeamScore,
+        Team AwayTeam,
+        byte AwayTeamScore
+    ) : IMatchScore
+    {
+        public static MatchScoreStub From(
+            string homeTeam,
+            byte homeTeamScore,
+            string awayTeam,
+            byte awayTeamScore
+        )
+        {
+            return new MatchScoreStub(
+                Team.Create(homeTeam),
+                homeTeamScore,
+                Team.Create(awayTeam),
+                awayTeamScore
+            );
         }
     }
 }

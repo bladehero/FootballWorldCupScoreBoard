@@ -4,7 +4,7 @@ using FootballWorldCupScoreBoard.Application.Scoring;
 
 namespace FootballWorldCupScoreBoard.Persistence.Games;
 
-public class GameRepository : ISummaryRecorder, IGameRepository
+public class GameRepository : ISummaryRecorder, ISummaryProvider
 {
     private readonly DatabaseContext _context;
     private readonly IGuidProvider _guidProvider;

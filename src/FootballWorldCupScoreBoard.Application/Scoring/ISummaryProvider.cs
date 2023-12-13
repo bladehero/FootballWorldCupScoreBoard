@@ -1,8 +1,8 @@
 ﻿using FootballWorldCupScoreBoard.Application.Matches;
 
-namespace FootballWorldCupScoreBoard.Persistence.Games;
+namespace FootballWorldCupScoreBoard.Application.Scoring;
 
-public interface IGameRepository
+public interface ISummaryProvider
 {
     IEnumerable<IMatchScore> GetAllGames();
 }
