@@ -162,7 +162,7 @@ public class ScoreBoardTests
         var actual = _sut.ShowRecent();
 
         // Assert
-        actual.Should().ContainInOrder(first, second);
+        actual.Should().ContainInOrder(second, first);
     }
 
     private record MatchScoreStub(
