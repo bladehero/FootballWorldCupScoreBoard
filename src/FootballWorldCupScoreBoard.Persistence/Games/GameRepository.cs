@@ -1,9 +1,10 @@
-﻿using FootballWorldCupScoreBoard.Application.Matches;
+﻿using FootballWorldCupScoreBoard.Application;
+using FootballWorldCupScoreBoard.Application.Matches;
 using FootballWorldCupScoreBoard.Application.Scoring;
 
 namespace FootballWorldCupScoreBoard.Persistence.Games;
 
-public class GameRepository : ISummaryRecorder
+public class GameRepository : ISummaryRecorder, IGameRepository
 {
     private readonly DatabaseContext _context;
     private readonly IGuidProvider _guidProvider;
@@ -12,6 +13,18 @@ public class GameRepository : ISummaryRecorder
     {
         _context = context;
         _guidProvider = guidProvider;
+    }
+
+    public IEnumerable<IMatchScore> GetAllGames()
+    {
+        return _context.Games.Select(AsMatchScore);
+
+        IMatchScore AsMatchScore(GameModel model)
+        {
+            var homeTeam = Team.Create(model.HomeTeamName);
+            var awayTeam = Team.Create(model.AwayTeamName);
+            return new MatchScore(homeTeam, model.HomeTeamScore, awayTeam, model.AwayTeamScore);
+        }
     }
 
     public void SaveMatch(IMatch match) =>
@@ -27,4 +40,7 @@ public class GameRepository : ISummaryRecorder
                     AwayTeamScore = match.AwayTeamScore,
                 }
             );
+
+    private record MatchScore(Team HomeTeam, byte HomeTeamScore, Team AwayTeam, byte AwayTeamScore)
+        : IMatchScore;
 }

@@ -52,6 +52,54 @@ public class GameRepositoryTests
         }
     }
 
+    [Fact]
+    public void GetAllGames_WhenNoGamesAdded_ShouldReturnEmptyCollection()
+    {
+        // Act
+        var actual = _sut.GetAllGames();
+
+        // Assert
+        actual.Should().BeEmpty().And.Subject.Should().AllBeOfType<IMatchScore>();
+    }
+
+    [Fact]
+    public void GetAllGames_WhenContextPopulatedWithGames_ShouldReturnMappedMatchScoreCollection()
+    {
+        // Arrange
+        _context.Games = new GameCollection
+        {
+            new()
+            {
+                Guid = SomeRandomGuid,
+                HomeTeamName = "England",
+                HomeTeamScore = 3,
+                AwayTeamName = "Germany",
+                AwayTeamScore = 2
+            }
+        };
+
+        // Act
+        var actual = _sut.GetAllGames();
+
+        // Assert
+        actual
+            .Should()
+            .HaveCount(1)
+            .And
+            .Subject
+            .First()
+            .Should()
+            .BeEquivalentTo(
+                new
+                {
+                    HomeTeam = new { Name = "England" },
+                    HomeTeamScore = 3,
+                    AwayTeam = new { Name = "Germany" },
+                    AwayTeamScore = 2,
+                }
+            );
+    }
+
     private class MatchStub : IMatch
     {
         public MatchStub(
