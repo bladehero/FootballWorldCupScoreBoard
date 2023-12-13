@@ -18,20 +18,27 @@ public class DependencyInjectionExtensionsTests
         // Assert
         using (new AssertionScope())
         {
-            sut.Should()
-                .Contain(
-                    x =>
-                        x.Lifetime == ServiceLifetime.Transient
-                        && x.ServiceType == typeof(IGuidProvider)
-                        && x.ImplementationType == typeof(GuidProvider)
-                );
-            sut.Should()
-                .Contain(
-                    x =>
-                        x.Lifetime == ServiceLifetime.Singleton
-                        && x.ServiceType == typeof(DatabaseContext)
-                        && x.ImplementationType == typeof(DatabaseContext)
-                );
+            VerifyServiceInjection<DatabaseContext>(sut, ServiceLifetime.Singleton);
+            VerifyServiceInjection<IGuidProvider, GuidProvider>(sut, ServiceLifetime.Transient);
         }
+    }
+
+    private static void VerifyServiceInjection<T>(
+        ServiceCollection sut,
+        ServiceLifetime lifetime
+    ) => VerifyServiceInjection<T, T>(sut, lifetime);
+
+    private static void VerifyServiceInjection<TService, TImplementation>(
+        ServiceCollection sut,
+        ServiceLifetime lifetime
+    )
+    {
+        sut.Should()
+            .Contain(
+                x =>
+                    x.Lifetime == lifetime
+                    && x.ServiceType == typeof(TService)
+                    && x.ImplementationType == typeof(TImplementation)
+            );
     }
 }
