@@ -1,5 +1,7 @@
 ﻿using FluentAssertions;
 using FluentAssertions.Execution;
+using FootballWorldCupScoreBoard.Application.Scoring;
+using FootballWorldCupScoreBoard.Persistence.Games;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FootballWorldCupScoreBoard.Persistence.UnitTests;
@@ -20,6 +22,8 @@ public class DependencyInjectionExtensionsTests
         {
             VerifyServiceInjection<DatabaseContext>(sut, ServiceLifetime.Singleton);
             VerifyServiceInjection<IGuidProvider, GuidProvider>(sut, ServiceLifetime.Transient);
+            VerifyServiceInjection<ISummaryRecorder, GameRepository>(sut, ServiceLifetime.Scoped);
+            VerifyServiceInjection<ISummaryProvider, GameRepository>(sut, ServiceLifetime.Scoped);
         }
     }
 
