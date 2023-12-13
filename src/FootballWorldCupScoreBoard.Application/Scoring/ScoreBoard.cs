@@ -64,6 +64,6 @@ public class ScoreBoard
 
     public IEnumerable<IMatchScore> ShowRecent()
     {
-        return Enumerable.Empty<IMatchScore>();
+        return _summaryProvider.GetAllGames();
     }
 }

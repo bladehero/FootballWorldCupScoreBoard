@@ -3,6 +3,7 @@ using FluentAssertions.Execution;
 using FootballWorldCupScoreBoard.Application.Matches;
 using FootballWorldCupScoreBoard.Application.Scoring;
 using Moq;
+using Match = FootballWorldCupScoreBoard.Application.Matches.Match;
 
 namespace FootballWorldCupScoreBoard.Application.UnitTests.Scoring;
 
@@ -150,12 +151,40 @@ public class ScoreBoardTests
     }
 
     [Fact]
-    public void ShowRecent_Always_ReturnsEmptyCollection()
+    public void ShowRecent_Always_ReturnsAllGames()
     {
+        // Arrange
+        var first = MatchScoreStub.From("Spain", 1, "Italy", 2);
+        var second = MatchScoreStub.From("Poland", 1, "England", 1);
+        _summaryProviderMock.Setup(x => x.GetAllGames()).Returns(new[] { first, second });
+
         // Act
         var actual = _sut.ShowRecent();
 
         // Assert
-        actual.Should().BeEmpty();
+        actual.Should().ContainInOrder(first, second);
+    }
+
+    private record MatchScoreStub(
+        Team HomeTeam,
+        byte HomeTeamScore,
+        Team AwayTeam,
+        byte AwayTeamScore
+    ) : IMatchScore
+    {
+        public static MatchScoreStub From(
+            string homeTeam,
+            byte homeTeamScore,
+            string awayTeam,
+            byte awayTeamScore
+        )
+        {
+            return new MatchScoreStub(
+                Team.Create(homeTeam),
+                homeTeamScore,
+                Team.Create(awayTeam),
+                awayTeamScore
+            );
+        }
     }
 }
