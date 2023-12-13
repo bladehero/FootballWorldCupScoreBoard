@@ -59,7 +59,7 @@ public class GameRepositoryTests
         var actual = _sut.GetAllGames();
 
         // Assert
-        actual.Should().BeEmpty();
+        actual.Should().BeEmpty().And.Subject.Should().AllBeOfType<IMatchScore>();
     }
 
     private class MatchStub : IMatch

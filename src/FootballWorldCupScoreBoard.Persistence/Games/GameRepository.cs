@@ -1,4 +1,5 @@
-﻿using FootballWorldCupScoreBoard.Application.Matches;
+﻿using FootballWorldCupScoreBoard.Application;
+using FootballWorldCupScoreBoard.Application.Matches;
 using FootballWorldCupScoreBoard.Application.Scoring;
 
 namespace FootballWorldCupScoreBoard.Persistence.Games;
@@ -14,10 +15,7 @@ public class GameRepository : ISummaryRecorder, IGameRepository
         _guidProvider = guidProvider;
     }
 
-    public IEnumerable<GameModel> GetAllGames()
-    {
-        return Enumerable.Empty<GameModel>();
-    }
+    public IEnumerable<IMatchScore> GetAllGames() => Enumerable.Empty<MatchScore>();
 
     public void SaveMatch(IMatch match) =>
         _context
@@ -32,4 +30,7 @@ public class GameRepository : ISummaryRecorder, IGameRepository
                     AwayTeamScore = match.AwayTeamScore,
                 }
             );
+
+    private record MatchScore(Team HomeTeam, byte HomeTeamScore, Team AwayTeam, byte AwayTeamScore)
+        : IMatchScore;
 }

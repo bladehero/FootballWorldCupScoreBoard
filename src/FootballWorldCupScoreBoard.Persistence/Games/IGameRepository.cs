@@ -1,6 +1,8 @@
-﻿namespace FootballWorldCupScoreBoard.Persistence.Games;
+﻿using FootballWorldCupScoreBoard.Application.Matches;
+
+namespace FootballWorldCupScoreBoard.Persistence.Games;
 
 public interface IGameRepository
 {
-    IEnumerable<GameModel> GetAllGames();
+    IEnumerable<IMatchScore> GetAllGames();
 }
